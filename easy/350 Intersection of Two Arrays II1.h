@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) 
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) 
 	{
 		sort( nums1.begin() , nums1.end() );
 		sort( nums2.begin() , nums2.end() );
@@ -37,12 +37,8 @@ public:
 			if( tmp1 == tmp2 )
 			{
 				ret.push_back( tmp1 );
-				while( head1 < nums1.size() && nums1[ head1 ] == tmp1 )
-					++head1;
-				
-				while( head2 < nums2.size() && nums2[ head2 ] == tmp2 )
-					++head2;
-				
+				++head1;
+				++head2;
 			}
 		}
 		return ret;
