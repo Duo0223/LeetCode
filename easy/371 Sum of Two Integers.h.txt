@@ -1,0 +1,51 @@
+
+/*
+Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+
+Example:
+Given a = 1 and b = 2, return 3.
+
+Credits:
+Special thanks to @fujiaozhu for adding this problem and creating all test cases.
+
+Subscribe to see which companies asked this question
+*/
+class Solution {
+public:
+    int getSum(int a, int b) 
+	{
+		static const int maskOne  = 0x00000001;
+		static const int maskZero = 0x00000000;
+		
+		int ret = maskZero;
+		int bitPos = 0;
+		int bitCount = 0;
+		int bitCarry = maskZero;
+		unsigned int ua = (unsigned int)a;
+		unsigned int ub = (unsigned int)b;
+		while( ua > 0 || ub > 0 )
+		{
+			bitCount = 0;
+			if( ua & maskOne ) 	++bitCount;
+			if( ub & maskOne ) 	++bitCount;
+			if( bitCarry )		++bitCount;
+			
+			if( bitCount >= 2 )
+				bitCarry = maskOne;
+			else
+				bitCarry = maskZero;
+			
+			if( bitCount == 1 || bitCount == 3 )
+				ret = ret | ( maskOne << bitPos );
+			
+			++bitPos;
+			ua = ua >> 1;
+			ub = ub >> 1;
+		}
+		
+		if( bitCarry && bitPos < 32 )
+			ret = ret | ( maskOne << bitPos );
+		
+		return ret;
+    }	
+};

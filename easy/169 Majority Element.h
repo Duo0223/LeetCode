@@ -1,8 +1,14 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
-    int majorityElement(vector<int>& nums)
-    {
-        sort( nums.begin() , nums.end() );
-        return nums[ (nums.size() >> 1) ];
+    bool hasCycle(ListNode *head) {
+        
     }
 };
